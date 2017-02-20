@@ -1,4 +1,4 @@
-class Api::V1::PostsController < Api::V1::ApplicationController
+class Api::V1::PostsController < Api::V1::ApiController
   def create
     post = @current_user.posts.create(post_params)
     if post.valid?
