@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use Puma as the app server
@@ -49,6 +48,14 @@ gem 'simple_command'
 # for modern web app frameworks and ORMs
 gem 'kaminari'
 
+# Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
+gem 'carrierwave'
+
+# A ruby wrapper for ImageMagick or GraphicsMagick command line.
+gem 'mini_magick'
+
+gem 'fog-aws'
+
 # Official Sass port of Bootstrap 2 and 3
 gem 'bootstrap-sass'
 
@@ -67,6 +74,9 @@ group :development, :test do
 
   # ..is a fixtures replacement with a straightforward definition syntax
   gem 'factory_girl_rails'
+
+  # A Ruby gem to load environment variables from `.env`.
+  gem 'dotenv-rails'
 end
 
 group :development do
