@@ -1,0 +1,14 @@
+// Place all the styles related to the Avatars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.avatar-panel {
+  text-align: center;
+}
+
+.avatar-bg {
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+  background: url(asset-path('avatar-bg.png'));
+}
