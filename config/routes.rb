@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   resources :avatars
 
+  get '/login', to: 'sessions#show'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       post 'authenticate', to: 'authenticate', controller: 'authentication'
