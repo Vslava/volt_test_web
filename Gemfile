@@ -63,6 +63,9 @@ gem 'bootstrap-sass'
 # to the essential parts without becoming cryptic
 gem 'slim-rails'
 
+# For ActiveJob support
+gem 'sidekiq'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'authenticate', to: 'authenticate', controller: 'authentication'
       resources :posts, only: [:create, :show, :index]
+      post 'reports/by_author', to: 'reports#by_author'
     end
   end
 end
