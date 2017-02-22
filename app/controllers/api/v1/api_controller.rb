@@ -12,7 +12,7 @@ class Api::V1::ApiController < ::ApiControllerBase
   end
 
   def authenticate_request
-    auth_result = AuthorizeApiRequest.call(params)
+    auth_result = AuthorizeApiRequest.call(params.delete(:auth_token))
 
     if auth_result.success?
       @current_user = auth_result.result

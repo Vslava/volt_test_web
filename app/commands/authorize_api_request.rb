@@ -1,8 +1,8 @@
 class AuthorizeApiRequest
   prepend SimpleCommand
 
-  def initialize(params = [])
-    @params = params
+  def initialize(auth_token = nil)
+    @auth_token = auth_token
   end
 
   def call
@@ -11,11 +11,11 @@ class AuthorizeApiRequest
 
   private
 
-  attr_reader :params
+  attr_reader :auth_token
 
   def user
     token = decoded_auth_token
-    unless token
+    unless token && errors.empty?
       errors.add(:invalid_token, 'Invalid token')
       return
     end
@@ -31,7 +31,7 @@ class AuthorizeApiRequest
   end
 
   def get_auth_token
-    return params[:auth_token] if params[:auth_token]
+    return auth_token if auth_token
 
     errors.add(:missing_token, 'Missing token')
   end
