@@ -20,10 +20,14 @@
 
   $ bin/rails db:seed
 
-Будет создан пользователь с параметрами:
+Будет созданы 2 пользователя с параметрами:
 * nickname: NickName
 * email: nick@example.ru
 * password: 123123123
+
+* nickname: Angel
+* email: angel@example.ru
+* password: 231231231
 
 ### Запрос
 
