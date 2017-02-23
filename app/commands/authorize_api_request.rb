@@ -15,7 +15,9 @@ class AuthorizeApiRequest
 
   def user
     token = decoded_auth_token
-    unless token && errors.empty?
+    return if errors.any?
+
+    unless token
       errors.add(:invalid_token, 'Invalid token')
       return
     end
