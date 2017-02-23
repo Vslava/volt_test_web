@@ -66,6 +66,9 @@ gem 'slim-rails'
 # For ActiveJob support
 gem 'sidekiq'
 
+# A library for generating fake data such as names, addresses, and phone numbers.
+gem 'faker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
