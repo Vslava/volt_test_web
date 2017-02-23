@@ -29,6 +29,7 @@ module VoltTestWeb
     config.action_mailer.smtp_settings = {
         address: ENV['SMTP_SERVER'],
         port: ENV['SMTP_PORT'],
+        domain: ENV['SMTP_DOMAIN'],
         user_name: ENV['SMTP_AUTH_LOGIN'],
         password: ENV['SMTP_AUTH_PASS'],
         authentication: :plain,
