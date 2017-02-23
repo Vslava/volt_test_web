@@ -1,9 +1,11 @@
 class Api::V1::ReportsController < Api::V1::ApiController
   def by_author
+    prm = report_params
+
     ReportGeneratorJob.perform_later(
-      report_params[:start_date],
-      report_params[:end_date],
-      report_params[:email]
+      prm[:start_date],
+      prm[:end_date],
+      prm[:email]
     )
 
     render json: { message: 'Report generation started' }

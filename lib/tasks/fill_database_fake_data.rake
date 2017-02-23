@@ -4,7 +4,7 @@ namespace :db do
   desc 'Fill the database by fake data'
   task :fill_fake_data do
     if Rails.env.development?
-      MAX_USER = 10
+      MAX_USER = 20
       MAX_DAYS = 120
 
       users = []
@@ -15,13 +15,15 @@ namespace :db do
           password: '123123123')
       end
 
-      1.upto(100).each do
+      1.upto(1000).each do
         users[Random.new.rand(MAX_USER)].posts.create(
           title: Faker::Lorem.sentence,
           body: Faker::Lorem.paragraph,
           published_at: Time.now + (Random.new.rand(MAX_DAYS) - MAX_DAYS).days
         )
+      end
 
+      1.upto(10000).each do
         users[Random.new.rand(MAX_USER)].comments.create(
           body: Faker::Lorem.paragraph,
           published_at: Time.now + (Random.new.rand(MAX_DAYS) - MAX_DAYS).days

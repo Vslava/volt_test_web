@@ -1,7 +1,10 @@
-class ReportGeneratorJob < ApplicationJob
-  queue_as :default
+# Preview all emails at http://localhost:3000/rails/mailers/report_mailer
+class ReportMailerPreview < ActionMailer::Preview
 
-  def perform(start_date, end_date, email)
+  def post_comment_statistic
+    start_date = '2016-10-01 00:00:00'
+    end_date = '2017-05-01 00:00:00'
+
     post_counts = Post.create_report(start_date, end_date)
     comment_counts = Comment.create_report(start_date, end_date)
 
@@ -9,7 +12,10 @@ class ReportGeneratorJob < ApplicationJob
     report_info = flatten_counts(report_info)
     report_info = sort_counts(report_info)
 
-    ReportMailer.post_comment_statistic(email, report_info).deliver_now
+    ReportMailer.post_comment_statistic(
+      Rails.application.config.report_from_email,
+      report_info
+    )
   end
 
   private

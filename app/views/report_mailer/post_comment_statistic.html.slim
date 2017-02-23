@@ -1,0 +1,15 @@
+h1 REPORT: The Post and Comment statistics
+table
+  thead
+    tr
+      th.left Nickname
+      th.left Email
+      th Number of Posts
+      th Number of Comments
+  tbody
+    - @info.each do |item|
+      tr
+        td.left = item[0]
+        td.left = item[1]
+        td.center = item[2]
+        td.center = item[3]

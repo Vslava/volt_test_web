@@ -22,6 +22,23 @@ module VoltTestWeb
         config.autoload_paths << load_path
     end
 
-    config.auth_token_expiration_time = 30.minutes
+    # config.auth_token_expiration_time = 30.minutes
+    config.auth_token_expiration_time = 1.days
+
+    config.report_from_email = ENV['FROM_EMAIL']
+    config.action_mailer.smtp_settings = {
+        address: ENV['SMTP_SERVER'],
+        port: ENV['SMTP_PORT'],
+        user_name: ENV['SMTP_AUTH_LOGIN'],
+        password: ENV['SMTP_AUTH_PASS'],
+        authentication: :plain,
+        enable_starttls_auto: true
+    }
+
+    # config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.perform_deliveries = true
   end
 end
