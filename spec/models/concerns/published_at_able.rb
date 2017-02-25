@@ -31,7 +31,7 @@ RSpec.shared_examples 'published_at -able' do
         items << create(parent_class, published_at: Time.now + 3.days)
 
         res = described_class.by_published_at(Time.now - 2.days - 1.hour,Time.now + 1.days)
-        expect(res.map(&:id)).to contain_exactly(items[1].id, items[2].id, items[3].id, items[4].id)
+        expect(res.pluck(:id)).to contain_exactly(items[1].id, items[2].id, items[3].id, items[4].id)
       end
     end
   end
