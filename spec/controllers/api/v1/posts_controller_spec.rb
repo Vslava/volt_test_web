@@ -11,8 +11,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
   describe 'auth token' do
     context 'when request without auth token' do
       it 'should return the missing token error' do
-        params = { title: 'title1111', body: 'body1111', published_at: Time.now.utc.to_s }
-        post :create, params: params
+        post :create, params: { title: 'title1111', body: 'body1111', published_at: Time.now.utc.to_s }
 
         expect(response.body).to include('[{"code":"missing_token"')
         expect(response).to have_http_status(:unauthorized)
@@ -21,8 +20,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     context 'when request with invalid auth token' do
       it 'should return error' do
-        params = { title: 'title1111', body: 'body1111', published_at: Time.now.utc.to_s, auth_token: '11111' }
-        post :create, params: params
+        post :create, params: { title: 'title1111', body: 'body1111', published_at: Time.now.utc.to_s, auth_token: '11111' }
 
         expect(response.body).to include('[{"code":"invalid_token"')
         expect(response).to have_http_status(:unauthorized)
@@ -30,12 +28,12 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     end
   end
 
-  def check_create_post(title, body, token, user)
-      params = { title: title, body: body, published_at: Time.now.utc.to_s, auth_token: token }
+  describe 'POST #create' do
+    it 'creates post successfully' do
+      params = { title: 'title111', body: 'body1111', published_at: Time.now.utc.to_s, auth_token: @auth_token }
       post :create, params: params
 
       parsed_response = JSON.parse(response.body)
-
       expect(parsed_response['title']).to eq params[:title]
       expect(parsed_response['body']).to eq params[:body]
       expect(parsed_response['author_nickname']).to eq user.nickname
@@ -46,25 +44,11 @@ RSpec.describe Api::V1::PostsController, type: :controller do
       expect(post.body).to eq params[:body]
       expect(post.published_at.utc.to_s).to eq params[:published_at]
       expect(post.user_id).to eq user.id
-  end
-
-  describe 'POST #create' do
-    let(:user2_attrs) { { nickname: 'NickName', email: 'nick@example.ru', password: '123123123' } }
-    let!(:user2) { create(:user, **user2_attrs)}
-
-    before do
-      @auth_token2 = AuthenticateUser.call(user2_attrs[:email], user2_attrs[:password]).result
-    end
-
-    it 'creates post successfully' do
-      check_create_post('title111','body1111', @auth_token, user)
-      check_create_post('title222', 'body2222', @auth_token2, user2)
     end
 
     context 'when published_at is absent' do
       it 'fills published_at in the table by current time' do
-        params = { title: 'title1111', body: 'body1111', auth_token: @auth_token }
-        post :create, params: params
+        post :create, params: { title: 'title1111', body: 'body1111', auth_token: @auth_token }
 
         item = Post.first
         expect(item.published_at).to be_truthy
@@ -73,8 +57,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     context 'when any field is absent' do
       it 'throws an error in the result' do
-        params = { body: 'body1111', published_at: Time.now.utc.to_s, auth_token: @auth_token }
-        post :create, params: params
+        post :create, params: { body: 'body1111', published_at: Time.now.utc.to_s, auth_token: @auth_token }
 
         expect(response).to have_http_status(:forbidden)
         expect(response.body).to include('[{"code":"post_create_failed"')
