@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :post do
-    title "My Title"
-    body "My Title"
+    title Faker::Lorem.sentence
+    body Faker::Lorem.sentences.join(' ')
     association :author, factory: :user
-    published_at "2017-02-18 09:58:29"
+    published_at Time.now.to_s
   end
 end
