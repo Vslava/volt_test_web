@@ -56,6 +56,10 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    carrierwave-bombshelter (0.2.2)
+      activesupport (>= 3.2.0)
+      carrierwave
+      fastimage
     case_transform (0.2)
       activesupport
     coffee-rails (4.2.1)
@@ -83,6 +87,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
+    fastimage (2.1.0)
     ffi (1.9.17)
     fog-aws (1.2.0)
       fog-core (~> 1.38)
@@ -253,6 +258,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   carrierwave
+  carrierwave-bombshelter
   coffee-rails (~> 4.2)
   dotenv-rails
   factory_girl_rails
