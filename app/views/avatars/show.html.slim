@@ -8,6 +8,9 @@
             = image_tag current_user.avatar.url
 
         = form_for current_user, url: avatar_path, method: :post, html: { multipart: true } do |f|
+          - flash.each do |name,message|
+            div class="alert alert-#{name}" role="alert"
+              = message
           .form-group
             = f.file_field :avatar, class: 'btn btn-default'
             = f.hidden_field :avatar_cache

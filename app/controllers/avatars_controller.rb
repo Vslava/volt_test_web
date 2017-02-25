@@ -7,6 +7,7 @@ class AvatarsController < ApplicationController
     if current_user.valid?
       render :show
     else
+      flash[:danger] = current_user.errors.full_messages.to_sentence
       redirect_to root_path
     end
   end
