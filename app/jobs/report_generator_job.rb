@@ -2,8 +2,8 @@ class ReportGeneratorJob < ApplicationJob
   queue_as :default
 
   def perform(start_date, end_date, email)
-    post_counts = Post.create_report(start_date, end_date)
-    comment_counts = Comment.create_report(start_date, end_date)
+    post_counts = Post.get_report_data(start_date, end_date)
+    comment_counts = Comment.get_report_data(start_date, end_date)
 
     report_info = unite_counts(post_counts, comment_counts)
     report_info = flatten_counts(report_info)
