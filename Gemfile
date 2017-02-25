@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use postgresql as the database for Active Record
 gem 'pg'
 
 # ActiveModel::Serializer implementation and Rails hooks
@@ -66,9 +67,6 @@ gem 'slim-rails'
 # For ActiveJob support
 gem 'sidekiq'
 
-# A library for generating fake data such as names, addresses, and phone numbers.
-gem 'faker'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -83,6 +81,9 @@ group :development, :test do
 
   # A Ruby gem to load environment variables from `.env`.
   gem 'dotenv-rails'
+
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker'
 end
 
 group :development do
