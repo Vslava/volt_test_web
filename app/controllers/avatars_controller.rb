@@ -1,11 +1,11 @@
 class AvatarsController < ApplicationController
-  def show
+  def new
   end
 
   def create
     current_user.update(user_params)
     if current_user.valid?
-      render :show
+      render :new
     else
       flash[:danger] = current_user.errors.full_messages.to_sentence
       redirect_to root_path
