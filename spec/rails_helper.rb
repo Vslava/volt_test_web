@@ -17,6 +17,13 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+# for 'rails-controller-testing' gem
+RSpec.configure do |config|
+  config.include Rails::Controller::Testing::TestProcess
+  config.include Rails::Controller::Testing::TemplateAssertions
+  config.include Rails::Controller::Testing::Integration
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

@@ -79,6 +79,8 @@ group :development, :test do
 
   gem 'rspec-rails'
 
+  gem 'rails-controller-testing'
+
   # Collection of testing matchers extracted from Shoulda
   gem 'shoulda-matchers'
 
