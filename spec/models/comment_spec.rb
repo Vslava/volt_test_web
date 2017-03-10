@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id           :integer          not null, primary key
+#  body         :text
+#  user_id      :integer
+#  published_at :datetime
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+# Indexes
+#
+#  index_comments_on_user_id  (user_id)
+#
+
 require 'rails_helper'
 require 'models/concerns/published_at_able'
 require 'models/concerns/author_able'
