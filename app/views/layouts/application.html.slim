@@ -10,6 +10,10 @@ html
   body
     .container
       nav.navbar.navbar-default
+        - if current_user&.avatar?
+          .navbar-header
+            = link_to root_path, class: 'navbar-brand'
+              = image_tag current_user.avatar.url, class: 'navbar-logo'
         - if current_user
           = form_tag logout_path, method: :get, class: 'navbar-form navbar-left'
             = submit_tag 'Logout', class: 'btn btn-default'
