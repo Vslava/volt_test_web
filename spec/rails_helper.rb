@@ -9,6 +9,8 @@ require 'rspec/rails'
 require 'factory_girl'
 require 'shoulda-matchers'
 
+require 'support/signin_helpers'
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     # Choose a test framework:
@@ -17,11 +19,14 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-# for 'rails-controller-testing' gem
 RSpec.configure do |config|
+  # for 'rails-controller-testing' gem
   config.include Rails::Controller::Testing::TestProcess
   config.include Rails::Controller::Testing::TemplateAssertions
   config.include Rails::Controller::Testing::Integration
+
+  # additional helpers
+  config.include SigninHelpers
 end
 
 # Add additional requires below this line. Rails is not loaded until this point!
